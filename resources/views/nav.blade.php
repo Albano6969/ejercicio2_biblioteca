@@ -1,6 +1,6 @@
 <nav class="flex items-center justify-between flex-wrap bg-gray-800 p-6 ">
   <div class="flex items-center flex-shrink-0 text-white mr-6">
-    <span class="font-semibold text-2xl tracking-tight">Biblioteca</span>
+    <span class="font-semibold text-2xl tracking-tight"><a href='/' class="font-semibold text-2xl tracking-tight text-gray-300 no-underline">Biblioteca</a> </span>
   </div>
   
   <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
