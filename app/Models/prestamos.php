@@ -74,14 +74,12 @@ class prestamos extends Model
     }
     /* ------------------------- */
 
-    /* Busqueda de prestamos por titulo del libro */  /* Tengo que terminarlo */
+    /* Busqueda de prestamos por titulo del libro */  
     public static function searchLendTittle($search){
         
-        /* $search= $request->search; */
-        
-       return $lend= prestamos::where('libro_id','LIKE',"%".$search."%")
+       return $lend= prestamos::where('libro_id','=',$search)
                 ->get();
-                /* return $lend= prestamos::find($search); */
+                
     }
     /* ------------------- */
 

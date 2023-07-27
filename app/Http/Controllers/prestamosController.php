@@ -86,20 +86,22 @@ public function DeleteUpdateLends(Request $request){
 
 /* Funcion para buscar por titulo*/
 public function searchLendTittle(Request $request){
-    $search=$request->search;
+    $resultado = [];
+    $resultId= [];
+    $librosResult = libros::all();
+    if( isset($librosResult)){
 
-    dd($search);
-    /* $libro_id=libros::searchBooksTittle($request); */
-    $prestamo = prestamos::with('libro')->get();
-
-   /*  $lend= prestamos::searchLendTittle($search); */
-   /*  dd($lend); */ 
-    /* $lend= prestamos::find('26'); */
-    /* dd($lend); */
-    /* dd($search); */
-   
-    
-    return view('prestamos.showPrestamo', compact('lend'));
+        foreach($librosResult as $libro){
+            
+            if($libro->titulo == $request->input('search')){
+                $resultId[]=$libro->id; 
+            }
+            
+        }
+                $resultado= prestamos::searchLendTittle($resultId);
+                return view('prestamos.showPrestamo')->with('lend', $resultado);
+            }
+    return view('prestamos.showPrestamo')->with('lend', []); 
 }
 /* ----------------------------- */
 
