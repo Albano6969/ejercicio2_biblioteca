@@ -3,7 +3,8 @@
     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
 
         <td class="px-6 py-4 text-base">{{$item->libro->titulo}}</td>
-        <td class="px-6 py-4 text-base">{{-- {{$item->book_id}} --}}</td>
+        {{-- <td class="px-6 py-4 text-base">{{$item->prestamo->libro_id}}</td> --}}
+        <td class="px-6 py-4 text-base">{{$item->libro->descripcion}}</td>
         <td class="px-6 py-4 text-base">{{$item->fecha_prestamo}}</td>
         <td class="px-6 py-4 text-base">{{$item->fecha_devolucion}}</td>
         <td class="px-6 py-4 text-base">

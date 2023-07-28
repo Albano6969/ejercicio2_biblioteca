@@ -16,7 +16,7 @@ class prestamosController extends Controller
     /* Mostramos todos los prestamos en una tabla */
     public function showAllLend(){
         $lend = prestamos::allLend();
-        
+        /* dd($lend); */
         return view('prestamos.showPrestamo', compact('lend'));
     }
     /* --------------------------- */
@@ -82,26 +82,49 @@ public function DeleteUpdateLends(Request $request){
 
 }
 /* --------------------- */
+/* Pruebas */
+public function showPruebas(){
+    $respuesta= 'o ';
+    $libros = prestamos::allLend();
+    $resultado= [];
+    foreach($libros as $item){
+        $titulo= $item->libro->titulo;
+        if(str_contains($titulo, $respuesta) )
+        
+        $resultado[]=$item;
+        $resultado= collect($resultado);
+        
+    }
+    dd($resultado);
+    $titulo= $libros->libro->titulo;
+        
 
+    
+    /* return view('admin.compra.index', compact('compras')); */
+}
+/* --------------- */
 
 /* Funcion para buscar por titulo*/
 public function searchLendTittle(Request $request){
+    $search= strtolower($request->input('search'));
     $resultado = [];
-    $resultId= [];
-    $librosResult = libros::all();
-    if( isset($librosResult)){
+    $prestamosLists = prestamos::allLend();
 
-        foreach($librosResult as $libro){
+    if(isset($prestamosLists)){
+
+        foreach($prestamosLists as $prestamosList){
+            $titulo= strtolower($prestamosList->libro->titulo);
             
-            if($libro->titulo == $request->input('search')){
-                $resultId[]=$libro->id; 
-            }
+                if(str_contains($titulo, $search) ){
+                
+                $resultado[]=$prestamosList;
+                $resultado= collect($resultado);
             
+                }
+
         }
-                $resultado= prestamos::searchLendTittle($resultId);
-                return view('prestamos.showPrestamo')->with('lend', $resultado);
-            }
-    return view('prestamos.showPrestamo')->with('lend', []); 
+        return view('prestamos.showPrestamo')->with('lend', $resultado);   
+    } 
 }
 /* ----------------------------- */
 

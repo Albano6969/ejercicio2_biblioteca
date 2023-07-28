@@ -21,6 +21,8 @@ class prestamos extends Model
     /* Relacion con la tabla libros */
     public function libro(){
         return $this->belongsTo(libros::class, 'libro_id', 'id');
+        
+       
     }
     /* -------------------------- */
 
@@ -33,6 +35,13 @@ class prestamos extends Model
     /* Buscar los prestamos que esten disponibles */
     public static function findLedId($id){
         return prestamos::find($id);
+    }
+    /* ---------------------- */
+
+     /* Seleccionar un libro por su ID */
+     public static function findLedIdResult($id){
+        return prestamos::where('libro_id', '=', $id)
+            ->get();
     }
     /* ---------------------- */
 

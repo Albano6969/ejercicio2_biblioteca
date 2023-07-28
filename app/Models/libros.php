@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\prestamos;
 use Illuminate\Http\Request;
-use App\prestamos;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class libros extends Model
 {
@@ -14,8 +15,9 @@ class libros extends Model
     protected $fillable=['titulo', 'autor', 'publicacion', 'genero', 'descripcion'];
     protected $table='libros';
    /* Relacion con la tabla libros */
-   public function prestamos(){
+   public function prestamos(): HasMany{
     return $this->hasMany(prestamos::class, 'libros_id', 'id');
+    /* return $this->hasMany(prestamos::class); */
 }
 /* -------------------------- */
 
@@ -67,6 +69,7 @@ class libros extends Model
         return libros::find($id);
     }
     /* ---------------------- */
+    
 
     /* Buscar todos los libros que coincidan con lo que ponemos en el campo de busqueda con paginación */
     public static function searchBooks(Request $request){
@@ -83,8 +86,10 @@ class libros extends Model
     /* Busqueda solo por titulo */
     public static function searchBooksTittle(Request $request){
         $search= $request->search;
+      
+        
        return $books= libros::where('titulo','LIKE',"%".$search."%")
-                ->paginate(10);
+                ->get();
         
     }
     /* ------------------- */

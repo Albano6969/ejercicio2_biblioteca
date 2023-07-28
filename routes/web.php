@@ -90,3 +90,7 @@ Route::get('/searchLendTittle', [prestamosController::class, 'searchLendTittle']
 /* Boton de buscar entre las fechas seleccionadas en prestamos */
 Route::get('/searchLendDate', [prestamosController::class, 'searchLendDate'])->name('searchLendDate');
 /* ------------------------------- */
+
+/* Pruebas */
+Route::get('/showPruebas', [prestamosController::class, 'showPruebas'])->name('showPruebas');
+/* ------------------------------- */

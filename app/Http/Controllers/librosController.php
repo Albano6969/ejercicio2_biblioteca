@@ -107,7 +107,7 @@ class librosController extends Controller
              
                 break;
         }
-        
+    
         return view('libros.showlibro', compact('books', 'search', 'searchSelected'));
     }
     /* ----------------------------- */
